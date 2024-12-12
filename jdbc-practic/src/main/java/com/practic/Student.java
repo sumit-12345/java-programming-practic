@@ -4,10 +4,7 @@ public class Student {
     private int id;
     private String name;
     private String address;
-    private String rollNo;
-    private int marks;
 
-    // Getters and setters
     public int getId() {
         return id;
     }
@@ -29,17 +26,11 @@ public class Student {
         this.address = address;
     }
 
-    public String getRollNo() {
         return rollNo;
     }
-    public void setRollNo(String rollNo) {
         this.rollNo = rollNo;
     }
 
-    public int getMarks() {
-        return marks;
     }
-    public void setMarks(int marks) {
-        this.marks = marks;
     }
 }

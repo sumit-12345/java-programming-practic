@@ -1,58 +1,44 @@
 package com.practic;
 
-import java.util.Scanner;
+import java.sql.*;
+import java.util.*;
 
 public class StudentApplication {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        // Insert a new student
-        System.out.println("Enter student details:");
+        try (Connection connection = DatabaseConnection.getConnection()) {
 
-        Student student1 = new Student();
+            Statement statement = connection.createStatement();
 
-        System.out.print("Name: ");
-        student1.setName(scanner.nextLine());  // Take Name as input
 
-        System.out.print("Address: ");
-        student1.setAddress(scanner.nextLine());  // Take Address as input
+            String insertQuery = "INSERT INTO student (id, name, address, roll_no, mark) " +
+                    "VALUES (1, 'John Doe', '123 Main St, City', 101, 85.5)";
+            int rowsInserted = statement.executeUpdate(insertQuery);
+            System.out.println("Rows inserted: " + rowsInserted);
 
-        System.out.print("Roll No: ");
-        student1.setRollNo(scanner.nextLine());  // Take Roll Number as input
 
-        System.out.print("Marks: ");
-        student1.setMarks(scanner.nextInt());  // Take Marks as input
+            String selectQuery = "SELECT * FROM student";
+            ResultSet resultSet = statement.executeQuery(selectQuery);
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String address = resultSet.getString("address");
+                int rollNo = resultSet.getInt("roll_no");
+                double mark = resultSet.getDouble("mark");
 
-        // Inserting the student into the database
-        boolean inserted = StudentDatabase.insertStudent(student1);
-        System.out.println("Student inserted: " + inserted);
+                System.out.println("ID: " + id + ", Name: " + name + ", Address: " + address +
+                        ", Roll No: " + rollNo + ", Mark: " + mark);
+            }
 
-        // Display all students (should be called once)
-        System.out.println("\nAll Students:");
-        StudentDatabase.getAllStudents();  // This method should only be called once.
+            // Step 5: Update the student's marks (for student with ID = 1)
+            String updateQuery = "UPDATE student SET mark = 90.0 WHERE id = 1";
+            int rowsUpdated = statement.executeUpdate(updateQuery);
+            System.out.println("Rows updated: " + rowsUpdated);
 
-        // Update a student's marks (optional step)
-        System.out.print("\nEnter student ID to update marks: ");
-        int studentId = scanner.nextInt();
-        scanner.nextLine();  // Consume the newline left after nextInt()
-        System.out.print("Updated Marks: ");
-        int updatedMarks = scanner.nextInt();
-
-        // Set the new values for student
-        student1.setId(studentId);
-        student1.setMarks(updatedMarks);
-
-        // Update student in database
-        boolean updated = StudentDatabase.updateStudent(student1);
-        System.out.println("Student updated: " + updated);
-
-        // Display all students again after update
-        System.out.println("\nAll Students after update:");
-        StudentDatabase.getAllStudents();
-
-        // Close scanner to avoid resource leak
-        scanner.close();
+        } catch (SQLException e) {
+            // Handle any SQL exceptions
+            e.printStackTrace();
+        }
     }
 }
-
 
