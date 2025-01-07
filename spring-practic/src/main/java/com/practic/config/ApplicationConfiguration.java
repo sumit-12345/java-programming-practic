@@ -1,6 +1,7 @@
 package com.practic.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.practic.dao.ProductDao;
+import lombok.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -10,25 +11,14 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource("classpath:application.properties")
 public class ApplicationConfiguration {
-    /*
-        1. DataSource (DriverManagerDataSource)
-        2. JdbcTemplate
-     */
-    @Value("${db.url}")
-    private String dbUrl;
-    @Value("${db.username}")
-    private String dbUsername;
-    @Value("${db.password}")
-    private String dbPassword;
-    @Value("${db.driverClassName}")
-    private String driverClassName;
+    private String dbUrl = "jdbc:mysql://localhost:3306/javaprojs";
+    private String dbUsername = "root";
+    private String dbPassword= "Sambit.joshi@01";
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(this.driverClassName);
         dataSource.setUrl(this.dbUrl);
         dataSource.setUsername(this.dbUsername);
         dataSource.setPassword(this.dbPassword);
@@ -40,5 +30,10 @@ public class ApplicationConfiguration {
         JdbcTemplate template = new JdbcTemplate();
         template.setDataSource(dataSource());
         return template;
+    }
+    @Bean
+    public ProductDao productDao() {
+        ProductDao productDao = new ProductDao(jdbcTemplate());
+        return productDao;
     }
 }

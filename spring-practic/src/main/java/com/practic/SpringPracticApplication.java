@@ -3,8 +3,10 @@ package com.practic;
 import com.practic.config.ApplicationConfiguration;
 import com.practic.dao.ProductDao;
 import com.practic.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
@@ -17,10 +19,9 @@ public class SpringPracticApplication
     public static void main( String[] args )
     {
         ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
-        ProductDao productDao = context.getBean(ProductDao.class);
-        List<Product> allProducts = productDao.getAllProducts();
-        for (Product product : allProducts) {
-            System.out.println(product);
+        String[] beanDefinitionNames = context.getBeanDefinitionNames();
+        for (String bean:beanDefinitionNames) {
+            System.out.println(bean);
         }
     }
 }

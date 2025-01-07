@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class StudentDatabase {
-
+/*
     // Insert student data into the database
     public static boolean insertStudent(Student student) {
         String query = "INSERT INTO students (name, address, roll_no, marks) VALUES (?, ?, ?, ?)";
@@ -69,7 +69,7 @@ public class StudentDatabase {
             e.printStackTrace();
             return false;  // Return false if there was an error
         }
-    }
+    }*/
 }
 
 

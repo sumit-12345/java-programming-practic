@@ -1,24 +1,22 @@
 package com.practic.dao;
 
 import com.practic.model.Product;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import javax.sql.DataSource;
 import java.util.List;
 
-public class ProductDao {
+public class ProductJdbcTemplate {
 
     private JdbcTemplate jdbcTemplate;
 
-    public ProductDao() {
-    }
-
-    public ProductDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public ProductJdbcTemplate() {
+        DataSource dataSource = new DriverManagerDataSource(
+                "jdbc:mysql://localhost:3306/productdb", "root", "root");
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public List<Product> getAllProducts() {

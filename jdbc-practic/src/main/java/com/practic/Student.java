@@ -22,15 +22,5 @@ public class Student {
     public String getAddress() {
         return address;
     }
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-        return rollNo;
-    }
-        this.rollNo = rollNo;
-    }
-
-    }
-    }
+  
 }

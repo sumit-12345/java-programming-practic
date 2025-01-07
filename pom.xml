@@ -10,6 +10,9 @@
   <modules>
     <module>jdbc-practic</module>
     <module>spring-practic</module>
+      <module>spring-core</module>
+    <module>collection-framework</module>
+      <module>student-management-system</module>
   </modules>
 
   <name>java-programming-practic</name>
