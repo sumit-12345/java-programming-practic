@@ -1,5 +1,6 @@
 package com.practic.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -17,7 +18,13 @@ public class Student {
 
     public Student() {
     }
-
+    public Student(int id, String name, int age, String department, String status){
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.department = department;
+        this.status = status;
+    }
     public Student(int id, String name, int age, String department, String status, List<String> coursesEnrolled, List<Integer> grades, Map<String, Double> feeStatus, boolean scholarshipEligibility) {
         this.id = id;
         this.name = name;
@@ -112,5 +119,36 @@ public class Student {
 
     public void setScholarshipEligibility(boolean scholarshipEligibility) {
         this.scholarshipEligibility = scholarshipEligibility;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", department='" + department + '\'' +
+                ", status='" + status + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
+    public static List<Student> generateStudents() {
+        List<Student> students = new ArrayList<>();
+        students.add(new Student(1, "Alice Johnson", 20, "Computer Science", "Active"));
+        students.add(new Student(2, "Bob Smith", 22, "Electrical Engineering", "Active"));
+        students.add(new Student(3, "Charlie Brown", 21, "Mechanical Engineering", "Inactive"));
+        students.add(new Student(4, "David Lee", 23, "Computer Science", "Graduated"));
+        students.add(new Student(5, "Eva Green", 20, "Civil Engineering", "Active"));
+        students.add(new Student(6, "Frank White", 24, "Biology", "Graduated"));
+        students.add(new Student(7, "Grace Black", 22, "Physics", "Active"));
+        students.add(new Student(8, "Henry Turner", 21, "Mathematics", "Inactive"));
+        students.add(new Student(9, "Isabelle Lewis", 23, "Computer Science", "Active"));
+        students.add(new Student(10, "Jack Wilson", 25, "Mechanical Engineering", "Graduated"));
+        students.add(new Student(11, "Karen Scott", 22, "Electrical Engineering", "Active"));
+        students.add(new Student(12, "Leo Martinez", 21, "Architecture", "Inactive"));
+        students.add(new Student(13, "Mia Rodriguez", 20, "Chemistry", "Active"));
+        students.add(new Student(14, "Nina Carter", 23, "Psychology", "Graduated"));
+        students.add(new Student(15, "Oliver Harris", 22, "Computer Science", "Active"));
+        return students;
     }
 }

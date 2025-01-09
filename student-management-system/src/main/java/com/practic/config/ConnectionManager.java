@@ -22,9 +22,7 @@ public class ConnectionManager {
             Connection connection = DriverManager.getConnection(url, username, password);
             System.out.println("Connection Successful!");
             return connection;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
