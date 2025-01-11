@@ -64,6 +64,16 @@ public class Course {
         this.schedule = schedule;
     }
 
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId=" + courseId +
+                ", courseName='" + courseName + '\'' +
+                ", instructorId=" + instructorId +
+                ", schedule='" + schedule + '\'' +
+                '}';
+    }
+
     public static List<Course> generateCourse() {
         List<Course> cources = new ArrayList<>();
         cources.add(new Course(101, "Introduction to Programming", 1, "M-W-F 9-10 AM"));

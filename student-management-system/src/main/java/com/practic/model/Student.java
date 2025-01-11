@@ -123,13 +123,10 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "{" +
                 "name='" + name + '\'' +
-                ", age=" + age +
-                ", department='" + department + '\'' +
                 ", status='" + status + '\'' +
-                ", id=" + id +
-                '}';
+                '}'+"\n";
     }
 
     public static List<Student> generateStudents() {
